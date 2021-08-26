@@ -93,6 +93,7 @@ def update_collection(data):
         id = str(record.pop('ID'))
         doc_ref = db.collection(u'trending').document(id)
         doc_ref.set(record)
+    print("updated {} records to firebase db".format(len(data)))
 
 if __name__ == "__main__":
     data = retrieve_data()

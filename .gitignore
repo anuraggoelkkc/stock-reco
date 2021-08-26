@@ -9,3 +9,5 @@ venvs
 
 # pyc files
 *.pyc
+
+logs
