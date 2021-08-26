@@ -56,11 +56,21 @@ def scrape_data(data):
         # print("tab data", tab_data)
         for item in tab_data:
             new_format = {}
+            if item['Ltp'] <= 0:
+                print("Invalid value of LTP. Debug this stock {}".format(item))
+                continue
+            try:
+                per_returns = round(((item['ExitPrice'] - item['Ltp']) * 100) / item['Ltp'], 2)
+            except:
+                print("DEBUG this stock {}".format(item))
+                continue
+            new_format["ExpectedReturnsPerc"] = per_returns
+            if per_returns <= 0:
+                print("skipping stock {} due to neg returns".format(item['CompanyName']))
+                continue
             for input_key, op_key in key_mapping.items():
                 new_format[op_key] = item[input_key]
                 new_format['TabName'] = tab_name
-                per_returns = round(((item['ExitPrice'] - item['Ltp']) * 100)/ item['Ltp'], 2)
-                new_format["ExpectedReturnsPerc"] = per_returns
             formatted_data.append(new_format)
     return formatted_data
 
