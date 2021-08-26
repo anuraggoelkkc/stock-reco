@@ -3,3 +3,6 @@ secrets
 
 # ide files
 .idea
+
+# virtaual envs folder
+venvs
