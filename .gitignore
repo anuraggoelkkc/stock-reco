@@ -6,3 +6,6 @@ secrets
 
 # virtaual envs folder
 venvs
+
+# pyc files
+*.pyc
